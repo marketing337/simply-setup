@@ -1,12 +1,18 @@
 import compression from "compression";
 import { config } from "dotenv";
 import express, { NextFunction, type Request, Response } from "express";
-import { resolve } from "path";
+import path from "path";
+import { fileURLToPath } from "url";
+
 import { handleDormantRedirects } from "./redirects";
 import { registerRoutes } from "./routes";
 import seed from "./seed";
 import { log, serveStatic, setupVite } from "./vite";
-config({ path: resolve(process.cwd(), ".env") });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+config({ path: path.join(__dirname, "..", ".env") });
+
 
 const app = express();
 
