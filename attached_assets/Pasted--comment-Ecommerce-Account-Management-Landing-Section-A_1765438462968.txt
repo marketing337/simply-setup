@@ -1,0 +1,332 @@
+{% comment %}
+Ecommerce Account Management — Landing Section
+Assign via: Online Store → Pages → your page → Theme template = "page.ecommerce-account-management"
+{% endcomment %}
+
+<section id="eam-root">
+  <style>
+    :root{ --eam-bg:#ffffff; --eam-surface:#f8fafc; --eam-text:#0f172a; --eam-sub:#475569; --eam-primary:#2563eb; --eam-primary-ink:#ffffff; --eam-accent:#0ea5e9; --eam-border:#e2e8f0; --eam-good:#16a34a; --eam-radius:16px; --eam-shadow:0 8px 24px rgba(2,6,23,.06); --eam-max:1120px; --eam-pad:clamp(16px,2vw,24px)}
+    *{box-sizing:border-box}
+    #eam-root{background:var(--eam-bg);color:var(--eam-text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.45}
+    #eam-root img{max-width:100%;height:auto}
+    #eam-root a{text-decoration:none}
+    .eam-wrap{max-width:var(--eam-max);margin:0 auto;padding:0 var(--eam-pad)}
+    .eam-section{padding:clamp(36px,3vw,80px) 0}
+
+    /* Hero */
+    .eam-hero{background:
+      radial-gradient(1200px 400px at 20% -10%, #e8f0ff 0%, rgba(232,240,255,0) 60%),
+      radial-gradient(800px 300px at 110% 10%, #e6fbff 0%, rgba(230,251,255,0) 60%),
+      linear-gradient(180deg,var(--eam-surface),#fff)}
+    .eam-heroBox{display:grid;gap:28px;grid-template-columns:1fr}
+    @media(min-width:980px){.eam-heroBox{grid-template-columns:0.8fr .9fr;align-items:center}}
+    .eam-kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--eam-primary);background:#eef2ff;border:1px solid #e0e7ff;padding:6px 10px;border-radius:999px}
+    .eam-hero h1{font-size:clamp(28px,4.2vw,44px);margin:10px 0 4px}
+    .eam-hero p{color:var(--eam-sub);font-size:clamp(15px,1.2vw,18px);margin:0}
+    .eam-heroCtas{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .eam-cta{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:linear-gradient(90deg,var(--eam-primary),#1d4ed8);color:#fff;border:1px solid rgba(37,99,235,.15);box-shadow:0 6px 18px rgba(37,99,235,.18);font-weight:600}
+    .eam-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--eam-border);padding:10px 14px;border-radius:10px;color:var(--eam-text);background:#fff}
+    .eam-bullets{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px}
+    .eam-bullet{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:var(--eam-sub)}
+    .eam-dot{width:8px;height:8px;border-radius:999px;background:var(--eam-good);margin-top:6px}
+    .eam-heroValue,.eam-heroCard{background:#fff;border:1px solid var(--eam-border);border-radius:24px;box-shadow:var(--eam-shadow);padding:24px 20px; align-content: center;}
+    .eam-heroCard h2{font-size:24px;text-align:center;margin:0 0 16px}
+    .eam-heroCard iframe{width:100%!important;height:700px;border:none;border-radius:16px}
+
+    /* Provider badges */
+    .service-providers{text-align:center}
+    .provider-container{display:grid;gap:20px;grid-template-columns:1fr;margin:0 auto;max-width:var(--eam-max);padding:0 var(--eam-pad)}
+    .provider-container a{display:flex;justify-content:center;align-items:center;background:#fff;padding:15px;border-radius:8px;transition:transform .3s,box-shadow .3s;box-shadow:0 1px 5px rgba(0,0,0,.1)}
+    .provider-container img{max-width:80%;height:auto;object-fit:contain}
+    @media(min-width:768px){.provider-container{grid-template-columns:repeat(2,1fr)}}
+
+    /* Logos */
+    .gst-trusted-section{width:100%;background:#fff;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;padding:24px 0}
+    .gst-trusted-container{max-width:var(--eam-max);margin:0 auto;padding:0 var(--eam-pad)}
+    .gst-trusted-header{text-align:center;margin-bottom:20px}
+    .gst-trusted-title{font-size:1.875rem;color:#1f2937;font-weight:700;margin-bottom:5px;line-height:1.2}
+    .gst-trusted-highlight{color:#2563eb}
+    .gst-trusted-divider{width:80px;height:3px;background:#2563eb;margin:12px auto;border-radius:2px}
+    .gst-trusted-description{font-size:1rem;color:#4b5563;max-width:600px;margin:0 auto;line-height:1.5}
+    .gst-logo-carousel-wrapper{position:relative;width:100%;overflow:hidden;height:84px}
+    .gst-logo-carousel{display:flex;align-items:center;gap:0;transition:transform .3s ease;will-change:transform}
+    .gst-logo-slide{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:160px;height:56px;margin:0 20px}
+    .gst-logo-image{max-width:100%;max-height:44px;object-fit:contain}
+    .gst-trusted-footnote{text-align:center;margin-top:20px;font-size:.875rem;color:#6b7280}
+    @media(max-width:768px){.gst-logo-slide{width:100px;margin:0 10px;height:50px}.gst-logo-image{max-height:40px}}
+
+    /* Titles and tiles */
+    .eam-title{font-size:clamp(22px,2.4vw,30px);margin:0 0 8px;position:relative}
+    .eam-title:after{content:"";display:block;width:56px;height:3px;background:linear-gradient(90deg,var(--eam-primary),var(--eam-accent));border-radius:2px;margin-top:10px}
+    .eam-tiles{display:grid;grid-template-columns:1fr;gap:14px}
+    @media(min-width:900px){.eam-tiles{grid-template-columns:repeat(3,1fr)}}
+    .eam-tile{background:#fff;border:1px solid var(--eam-border);border-radius:16px;padding:18px;box-shadow:var(--eam-shadow);transition:transform .2s}
+    .eam-tile:hover{transform:translateY(-2px)}
+    .eam-tile h3{margin:0 0 6px;font-size:18px}
+    .eam-tile p{margin:0;color:var(--eam-sub);font-size:14px}
+
+    /* Steps and KPIs */
+    .eam-steps{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:820px){.eam-steps{grid-template-columns:repeat(4,1fr)}}
+    .eam-step{background:#fff;border:1px solid var(--eam-border);border-radius:14px;padding:16px;box-shadow:var(--eam-shadow)}
+    .eam-step .num{display:inline-flex;width:28px;height:28px;border-radius:8px;align-items:center;justify-content:center;background:var(--eam-primary);color:#fff;font-weight:700;font-size:14px}
+    .eam-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media(min-width:820px){.eam-kpis{grid-template-columns:repeat(4,1fr)}}
+    .eam-kpi{background:#fff;border:1px solid var(--eam-border);border-radius:14px;box-shadow:var(--eam-shadow);padding:16px;text-align:center}
+    .eam-kpi strong{display:block;font-size:24px}
+
+    /* FAQ */
+    .eam-faq{display:grid;grid-template-columns:1fr;gap:10px}
+    .eam-qa{background:#fff;border:1px solid var(--eam-border);border-radius:14px}
+    .eam-q{width:100%;text-align:left;background:none;border:0;padding:16px;display:flex;justify-content:space-between;align-items:center;font-weight:600}
+    .eam-a{max-height:0;overflow:hidden;transition:max-height .25s ease,padding .25s ease;padding:0 16px 0 16px;color:var(--eam-sub)}
+    .eam-qa.open .eam-a{max-height:260px;padding:0 16px 16px 16px}
+    .eam-q span{transition:transform .2s ease}
+    .eam-qa.open .eam-q span{transform:rotate(45deg)}
+
+    /* Contact */
+    .eam-contactBox{display:grid;gap:28px;grid-template-columns:1fr}
+    @media(min-width:980px){.eam-contactBox{grid-template-columns:.8fr .9fr;align-items:center}}
+    .eam-contactValue{background:#fff;border:1px solid var(--eam-border);border-radius:24px;box-shadow:var(--eam-shadow);padding:28px}
+    .eam-contactValue h3{margin:6px 0 8px;font-size:24px}
+  </style>
+
+  <!-- Hero -->
+  <section class="eam-section eam-hero" id="home">
+    <div class="eam-wrap eam-heroBox">
+      <div class="eam-heroValue">
+        <span class="eam-kicker">Done-for-you operations</span>
+        <h1>Account management that grows marketplace sales</h1>
+        <p>We run your Amazon, Flipkart, Meesho, and D2C operations. Listings, ads, catalog health, brand store, tickets, and analytics handled daily.</p>
+        <div class="eam-heroCtas">
+          <a class="eam-cta" href="#package">See package</a>
+          <a class="eam-ghost" href="#services">View services</a>
+        </div>
+        <div class="eam-bullets">
+          <div class="eam-bullet"><span class="eam-dot"></span><span>Daily catalog and buy-box checks</span></div>
+          <div class="eam-bullet"><span class="eam-dot"></span><span>Ad campaigns optimised weekly</span></div>
+          <div class="eam-bullet"><span class="eam-dot"></span><span>Penalty and claim prevention</span></div>
+          <div class="eam-bullet"><span class="eam-dot"></span><span>Simple monthly reporting</span></div>
+        </div>
+      </div>
+      <div class="eam-heroCard" aria-live="polite">
+        <iframe aria-label="Connect with an Expert" frameborder="0" src="https://forms.zohopublic.in/accounts50/form/ConnectwithanExper/formperma/iaNBbyQn2JIs-PTari0-zv2Q-9T4Rv39wbjzgZhwGPU"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Provider badges -->
+  <section class="eam-section service-providers">
+    <div class="provider-container">
+      <a href="https://sellercentral.amazon.in/gspn/provider-details/Taxes/edc4f8ac-e14d-4e43-af61-399cabbbacf7?ref_=sc_gspn_talst_tadt-edc4f8ac&localeSelection=en_US&sellFrom=IN&sellIn=IN">
+        <img src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/seller_service_provider_2acd6823-000f-444a-85f9-5ba66426bbe5.png?v=1705946594" alt="Amazon Service Provider">
+      </a>
+      <a href="https://seller.flipkart.com/index.html#dashboard/partner-services/service-partner-details?query=%257B%2522categoryId%2522%3A%25227%2522%2C%2522location%2522%3A412207%2C%2522partnerCategoryId%2522%3A%25228123%2522%2C%2522partnerId%2522%3A%2522PTNc58c1173c26f4a248fcd11e9e8cf025d%2522%2C%2522campaignId%2522%3A%2522%2522%2C%2522categoryName%2522%3A%2522Taxation%2522%2C%2522pageCTASource%2522%3A%2522%2520Partner%2520card%2522%2C%2522pageCTAValue%2522%3A%2522%2522%257D">
+        <img src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/seller_service_provider_1.png?v=1717265468" alt="Flipkart Service Provider">
+      </a>
+    </div>
+  </section>
+
+  <!-- Logos -->
+  <section id="gst-trusted-partners" class="eam-section gst-trusted-section">
+    <div class="gst-trusted-container">
+      <div class="gst-trusted-header">
+        <h2 class="gst-trusted-title">Trusted by <span class="gst-trusted-highlight">Industry Leaders</span></h2>
+        <div class="gst-trusted-divider"></div>
+        <p class="gst-trusted-description">30,000+ D2C Brands and Public Companies across diverse sectors rely on our expertise</p>
+      </div>
+      <div class="gst-logo-carousel-wrapper">
+        <div id="gst-logo-carousel" class="gst-logo-carousel">
+          {% comment %} Duplicate or edit logos as needed {% endcomment %}
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/Airtel-logo.png?v=1744191898" alt="AIRTEL"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/Reliance_Retail.png?v=1756555427" alt="RIL"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/Carysil-logo.png?v=1755978852" alt="CARYSIL"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/cocoblu-logo.png?v=1723009856" alt="COCOBLU"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/godrej-logo-191FB61A1F-seeklogo.com.png?v=1723541004" alt="GODREJ"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/TATA_1mg_Logo.png?v=1749482060" alt="TATA1MG"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/MB_Logo_76b87842-ec90-4ecd-af88-af2897792baa.png?v=1761672035" alt="MB"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/8.png?v=1723630722" alt="ZUARI"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/Baidyanath_logo.png?v=1750676036" alt="BAIDYANATH"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/MANKIND.NS_BIG-e2edbe6b.png?v=1740139347" alt="MANKIND"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/Healthkart.png?v=1761672031" alt="HEALTHKART"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/haldirams-logo_1.png?v=1723630841" alt="HALDIRAM"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/logo_trunativ-5-01.png?v=1750762222" alt="TRUNATIV"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/625c2a23bc5a9d2f9933553f_Group_201668.png?v=1754652108" alt="MANMATTERS"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/truebasics-logo-1.png?v=1761672033" alt="TRUEBASICS"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/Spigen_logo_adb37b50-b2a6-46ac-bfcd-6c490e7ce63b.png?v=1750676310" alt="SPIGEN"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/Neemans-Logo.png?v=1750676134" alt="NEEMANS"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://thegstco.com/cdn/shop/files/Milton_Logo_x38.png?v=1719050580" alt="MILTON"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/5849356.png?v=1723011064" alt="AVON CYCLES"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/1473406729waree-final.png?v=1728900708" alt="WAAREE"></div>
+          <div class="gst-logo-slide"><img class="gst-logo-image" src="https://thegstco.com/cdn/shop/files/mamaearth-logo_x38.png?v=1706364685" alt="MAMAEARTH"></div>
+        </div>
+      </div>
+      <div class="gst-trusted-footnote"><p>And many more leading MSMEs</p></div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section id="why-us" class="eam-section" aria-label="Why choose us">
+    <div class="eam-wrap">
+      <h2 class="eam-title">Why choose us</h2>
+      <div class="eam-tiles">
+        <article class="eam-tile"><h3>🛡️ Compliance First Approach</h3><p>Listing policy, claims, and GST-compliant processes baked into ops.</p></article>
+        <article class="eam-tile"><h3>🧠 10 Years of Ecommerce Experience</h3><p>Playbooks from thousands of listings across India’s top marketplaces.</p></article>
+        <article class="eam-tile"><h3>📈 Guaranteed Growth</h3><p>Clear KPIs and monthly targets on sessions, CVR, and TACoS.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="eam-section" aria-label="Services">
+    <div class="eam-wrap">
+      <h2 class="eam-title">What we manage</h2>
+      <p class="eam-sub">Full-stack account operations so you focus on supply and product.</p>
+      <div class="eam-tiles">
+        <article class="eam-tile"><h3>Catalog & Listings</h3><p>Keyword research, A+ content, variation trees, quality and suppression fixes.</p></article>
+        <article class="eam-tile"><h3>Ads & Growth</h3><p>Sponsored ads setup, weekly optimisation, budgets, ROAS targets, and reports.</p></article>
+        <article class="eam-tile"><h3>Inventory Health</h3><p>Smart logistics planning, stockout prevention, ageing and IPI monitoring.</p></article>
+        <article class="eam-tile"><h3>Ratings & Support</h3><p>Ticket handling, negative feedback playbooks, voice of customer improvement.</p></article>
+        <article class="eam-tile"><h3>Compliance</h3><p>Category approvals, brand registry, claim audits, PoA drafts for reinstatement.</p></article>
+        <article class="eam-tile"><h3>Analytics</h3><p>Dashboards on sessions, CVR, TACoS, contribution margin, and ASIN cohorts.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="eam-section" aria-label="Process">
+    <div class="eam-wrap">
+      <h2 class="eam-title">Simple onboarding</h2>
+      <p class="eam-sub">Go live in one week with a clear 30-60-90 plan.</p>
+      <div class="eam-steps">
+        <div class="eam-step"><span class="num">1</span><h3>Audit</h3><p class="eam-sub">ASIN, ads, defects, fees, and operations baseline.</p></div>
+        <div class="eam-step"><span class="num">2</span><h3>Plan</h3><p class="eam-sub">Targets, budgets, catalog fixes, and growth levers.</p></div>
+        <div class="eam-step"><span class="num">3</span><h3>Execute</h3><p class="eam-sub">Listings, ads, logistics, and ticket routines.</p></div>
+        <div class="eam-step"><span class="num">4</span><h3>Report</h3><p class="eam-sub">Weekly KPIs and a monthly P&L contribution view.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="eam-section" aria-label="Results">
+    <div class="eam-wrap">
+      <h2 class="eam-title">Outcomes you can track</h2>
+      <div class="eam-kpis">
+        <div class="eam-kpi"><strong>+28%</strong><span>Conversion Rate</span></div>
+        <div class="eam-kpi"><strong>−22%</strong><span>TACoS</span></div>
+        <div class="eam-kpi"><strong>+35%</strong><span>Sessions</span></div>
+        <div class="eam-kpi"><strong>+18d</strong><span>Faster Issue Closure</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Package -->
+  <section id="package" class="eam-section" aria-label="Package details">
+    <div class="eam-wrap">
+      <h2 class="eam-title">Managed services package</h2>
+      <p class="eam-sub">Scope covered under our monthly retainer.</p>
+      <div class="eam-tiles">
+        <article class="eam-tile"><h3>Account Health & Compliance</h3><ul><li>Regular account health checks and risk monitoring</li><li>Listing policy enforcement and compliance support</li><li>Prompt resolution of seller warnings/suspensions</li></ul></article>
+        <article class="eam-tile"><h3>Product Listing & Optimization</h3><ul><li>SKU creation, upload, and content writing</li><li>Keyword research and SEO for titles, descriptions, backend</li><li>Product image editing</li></ul></article>
+        <article class="eam-tile"><h3>Pricing & Inventory Management</h3><ul><li>Price updates per market trends or brand directions</li><li>Stock monitoring and out-of-stock alerts</li><li>Inventory sync across warehouses</li></ul></article>
+        <article class="eam-tile"><h3>Order & Returns Management</h3><ul><li>Daily order processing support</li><li>Returns/refunds/claim coordination</li><li>Buyer feedback monitoring</li></ul></article>
+        <article class="eam-tile"><h3>Ad Campaign Management (PPC)</h3><ul><li>Campaign setup within agreed budgets</li><li>Keyword research and bid optimisation</li><li>Weekly reporting on ad spend, ACOS, suggestions</li></ul></article>
+        <article class="eam-tile"><h3>Reports & Performance Feedback</h3><ul><li>Weekly dashboards</li><li>Monthly review call with action plan</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (above FAQ) -->
+  <section id="contact" class="eam-section" aria-label="Contact Form">
+    <div class="eam-wrap">
+      <div class="eam-contactBox">
+        <div class="eam-contactValue">
+          <span class="eam-kicker">Talk to an expert</span>
+          <h3>Get a quick account audit and plan</h3>
+          <p class="eam-sub">Share your details. We review listings, ads, and account health then send a 30-60-90 action plan.</p>
+          <div class="eam-bullets">
+            <div class="eam-bullet"><span class="eam-dot"></span><span>Free audit summary</span></div>
+            <div class="eam-bullet"><span class="eam-dot"></span><span>Action plan in 48 hours</span></div>
+            <div class="eam-bullet"><span class="eam-dot"></span><span>No lock-in engagement</span></div>
+          </div>
+        </div>
+        <div class="eam-heroCard" aria-live="polite">
+          <iframe aria-label="Connect with an Expert" frameborder="0" src="https://forms.zohopublic.in/accounts50/form/ConnectwithanExper/formperma/iaNBbyQn2JIs-PTari0-zv2Q-9T4Rv39wbjzgZhwGPU"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faq" class="eam-section" aria-label="FAQ">
+    <div class="eam-wrap">
+      <h2 class="eam-title">FAQs</h2>
+      <div class="eam-faq">
+        {% assign faqs = "" | split: "" %}
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">How fast can we start? <span>+</span></button><div class="eam-a">Audit in 2–3 days. Go-live in 7 days after access and brand assets.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">Which marketplaces do you cover? <span>+</span></button><div class="eam-a">Amazon, Flipkart, Meesho, JioMart, and Shopify for D2C.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">What do you need from us? <span>+</span></button><div class="eam-a">Store access, product data, creatives, GST details, and weekly stock inputs.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">What KPIs do you track and improve? <span>+</span></button><div class="eam-a">Sessions, CVR, TACoS/ACOS, Buy-Box %, defect rates, IPI, and contribution margin.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">Do you manage ad budgets or only advise? <span>+</span></button><div class="eam-a">We manage end-to-end within agreed budgets.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">Minimum term and cancellation? <span>+</span></button><div class="eam-a">Month-to-month. 15-day notice. No lock-in.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">Do you build A+ and Brand Store? <span>+</span></button><div class="eam-a">Yes. Copy, modules, and implementation after approval.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">Brand Registry and approvals? <span>+</span></button><div class="eam-a">We prepare docs, raise cases, and track to closure.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">How do reporting and calls work? <span>+</span></button><div class="eam-a">Weekly dashboards and a monthly review call.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">Who owns data, ads, and listings? <span>+</span></button><div class="eam-a">You own all accounts and data. Changes are documented.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">What is not included? <span>+</span></button><div class="eam-a">Photography, warehousing, and courier costs are out of scope.</div></div>
+        <div class="eam-qa"><button class="eam-q" aria-expanded="false">How is pricing structured? <span>+</span></button><div class="eam-a">Fixed monthly retainer based on catalog size and marketplaces.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('#eam-root a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const href=a.getAttribute('href'); if(href.length>1){ e.preventDefault(); document.querySelector(href)?.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+
+    // FAQ toggle
+    document.querySelectorAll('#eam-root .eam-q').forEach(btn=>{
+      btn.addEventListener('click',()=>toggleQA(btn));
+      btn.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleQA(btn); }});
+    });
+    function toggleQA(btn){
+      const qa = btn.parentElement;
+      const open = qa.classList.contains('open');
+      document.querySelectorAll('#eam-root .eam-qa.open').forEach(x=>{ x.classList.remove('open'); x.querySelector('.eam-q')?.setAttribute('aria-expanded','false'); });
+      if(!open){ qa.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      else { qa.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    }
+
+    // Logos carousel
+    (function(){
+      const logoCarousel = document.querySelector('#eam-root #gst-logo-carousel');
+      if(!logoCarousel) return;
+      const originals = Array.from(document.querySelectorAll('#eam-root .gst-logo-slide'));
+      originals.forEach(item=>logoCarousel.appendChild(item.cloneNode(true)));
+      const SPEED_DESKTOP=120,SPEED_MOBILE=90; let pos=0,paused=false,last=performance.now();
+      const isMobile=()=>window.innerWidth<=768;
+      const speed=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:(isMobile()?SPEED_MOBILE:SPEED_DESKTOP);
+      const stride=()=>{const el=originals[0]; if(!el) return 0; const r=el.getBoundingClientRect(), cs=getComputedStyle(el); return r.width+parseFloat(cs.marginLeft)+parseFloat(cs.marginRight)};
+      const total=()=>originals.length*stride();
+      function tick(now){ const dt=(now-last)/1000; last=now; if(!paused){ pos-=speed()*dt; const tw=total(); if(tw>0 && pos<=-tw){ pos+=tw } logoCarousel.style.transform=`translateX(${pos}px)` } requestAnimationFrame(tick) }
+      requestAnimationFrame(tick);
+      logoCarousel.addEventListener('mouseenter',()=>paused=true);
+      logoCarousel.addEventListener('mouseleave',()=>paused=false);
+      window.addEventListener('resize',()=>{ const tw=total(); if(tw>0) pos=-((Math.abs(pos))%tw); last=performance.now(); logoCarousel.style.transform=`translateX(${pos}px)`; });
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "EAM Landing",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    { "name": "EAM Landing" }
+  ]
+}
+{% endschema %}

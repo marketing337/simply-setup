@@ -1,0 +1,529 @@
+import { useEffect, useState, useMemo, lazy, Suspense } from "react";
+import { useLocation as useWouterLocation } from "wouter";
+import { useLocation } from "@/hooks/useLocation";
+import {
+  Building,
+  Mail,
+  HandshakeIcon,
+  Headphones,
+  MapPin,
+  Search,
+  Building2,
+  ArrowRight,
+  CheckCircle,
+  Star,
+  Users,
+  Shield,
+  Clock,
+  TrendingUp,
+  Zap,
+  Target,
+  Phone,
+  Crown,
+  Landmark,
+  Mountain,
+  Waves,
+  TreePine,
+  Castle,
+  Sun,
+  Flower,
+  Fish,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
+import { topIndianCities } from "@/lib/indianCities";
+import { fallbackImages, heroBgColors } from "@/lib/locationData";
+import { cn } from "@/lib/utils";
+import { getCityIcon } from "@/lib/cityIcons";
+import type { Location } from "@shared/schema";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import OptimizedImage from "@/components/OptimizedImage";
+import MobileContactButton from "@/components/MobileContactButton";
+
+export default function Home() {
+  const { currentLocation, isLoading, error, allLocations } = useLocation();
+  const [, setLocation] = useWouterLocation();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [citySearchTerm, setCitySearchTerm] = useState("");
+  const [showAllCities, setShowAllCities] = useState(false);
+
+  // Memoize popular and other cities for performance
+  const popularCities = useMemo(() => 
+    allLocations.filter((location) => topIndianCities.includes(location.name)),
+    [allLocations]
+  );
+
+  const otherCities = useMemo(() => 
+    allLocations.filter((location) => !topIndianCities.includes(location.name)),
+    [allLocations]
+  );
+
+  // Don't automatically redirect - let users stay on the city selector page
+
+  // Memoize filtered locations for performance
+  const filteredLocations = useMemo(() => 
+    searchTerm
+      ? allLocations.filter((location) =>
+          location.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : allLocations,
+    [searchTerm, allLocations]
+  );
+
+  // Memoize filtered all cities for performance
+  const filteredAllCities = useMemo(() => 
+    citySearchTerm
+      ? allLocations.filter((location) =>
+          location.name.toLowerCase().includes(citySearchTerm.toLowerCase())
+        )
+      : allLocations,
+    [citySearchTerm, allLocations]
+  );
+
+  // Determine which cities to display (limit to 24 initially unless showing all or searching)
+  const citiesToDisplay = useMemo(() => 
+    citySearchTerm || showAllCities
+      ? filteredAllCities
+      : filteredAllCities.slice(0, 24),
+    [citySearchTerm, showAllCities, filteredAllCities]
+  );
+
+  const hasMoreCities = !citySearchTerm && !showAllCities && filteredAllCities.length > 24;
+
+  // Only show loading indicator if actively detecting location
+  if (isLoading) {
+    return (
+      <div className="min-h-screen p-4 bg-background">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Welcome to Virtual Offices
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Detecting your location...
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
+
+  const handleCityClick = (location: Location) => {
+    // Save to localStorage first
+    try {
+      localStorage.setItem("virtualoffice_location", JSON.stringify(location));
+    } catch (err) {
+      console.error("Failed to save location to localStorage:", err);
+    }
+
+    // Navigate directly
+    window.location.href = `/${location.slug}`;
+  };
+
+  // Memoized city grid component for better performance
+  const renderCityGrid = useMemo(() => (cities: Location[]) => {
+    return (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {cities.map((location: Location) => {
+          const IconComponent = getCityIcon(location.name);
+          return (
+            <div
+              key={location.id}
+              onClick={() => handleCityClick(location)}
+              className="flex flex-col items-center p-4 border rounded-lg hover:shadow-md transition-all text-center cursor-pointer"
+            >
+              <div className="mb-2 w-10 h-10 flex items-center justify-center rounded-full bg-blue-100">
+                <IconComponent className="h-6 w-6 text-blue-600" />
+              </div>
+              <span className="text-sm">{location.name}</span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }, []);
+
+  const renderCitySearch = () => {
+    return (
+      <div className="w-full mt-6">
+        <div className="relative mb-6">
+          <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+          <Input
+            type="text"
+            placeholder="Search for a city..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10 py-2"
+          />
+        </div>
+
+        {searchTerm ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {filteredLocations.map((location) => (
+              <Button
+                key={location.id}
+                variant="outline"
+                onClick={() => handleCityClick(location)}
+                className="text-left justify-start py-3 px-4 h-auto hover:bg-gray-50 hover:border-primary"
+              >
+                <MapPin className="h-4 w-4 mr-2 text-primary" />
+                <span>{location.name}</span>
+              </Button>
+            ))}
+          </div>
+        ) : null}
+
+        {searchTerm && filteredLocations.length === 0 && (
+          <div className="text-center py-8 text-gray-500">
+            No cities found matching "{searchTerm}"
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <SEO isHomePage={true} />
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="py-8 md:py-12 bg-gradient-to-br from-blue-50 to-white">
+        <div className="max-w-6xl mx-auto px-6 sm:px-6 lg:px-8">
+          <div className="text-center mb-6 md:mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight px-2">
+              #1 Virtual Office Provider in
+              <span className="text-blue-600"> India</span>
+            </h1>
+            <p className="text-base sm:text-lg md:text-lg text-gray-600 max-w-3xl mx-auto mb-6 md:mb-8 px-4 leading-relaxed">
+              From Business Address, GST, MCA and Bank. One Stop Platform for
+              getting VO in India.
+            </p>
+
+            <div className="flex justify-center mb-6 md:mb-8 px-4">
+              <Button
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 sm:px-10 py-4 text-base sm:text-lg rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+                onClick={() => {
+                  const citySection = document.getElementById(
+                    "choose-city-section",
+                  );
+                  if (citySection) {
+                    citySection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
+                Get Started <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm sm:text-base text-gray-600 px-4">
+              <div className="flex items-center gap-2">
+                <span className="ml-2 font-medium">
+                  Authorised GSTP: 27AAOCS1234A1Z5
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-6 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
+              Why Choose Us
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              Trusted by thousands of businesses across India for reliable
+              virtual office solutions
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {/* Authorised GST Practitioners */}
+            <div className="text-center p-6 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100/50 hover:shadow-lg transition-all duration-200">
+              <div className="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                <Shield className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Authorised GST Practitioners
+              </h3>
+              <p className="text-sm text-gray-600">
+                Certified professionals ensuring compliant GST registration and
+                documentation
+              </p>
+            </div>
+
+            {/* Reputed Space Partners */}
+            <div className="hidden sm:block text-center p-6 rounded-lg bg-gradient-to-br from-green-50 to-green-100/50 hover:shadow-lg transition-all duration-200">
+              <div className="w-16 h-16 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                <Building2 className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Reputed Space Partners
+              </h3>
+              <p className="text-sm text-gray-600">
+                Premium business addresses in prestigious commercial locations
+              </p>
+            </div>
+
+            {/* Lowest Prices & Fast Approvals */}
+            <div className="text-center p-6 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100/50 hover:shadow-lg transition-all duration-200">
+              <div className="w-16 h-16 mx-auto mb-4 bg-orange-600 rounded-full flex items-center justify-center shadow-lg">
+                <Zap className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Lowest Prices & Fast Approvals
+              </h3>
+              <p className="text-sm text-gray-600">
+                Competitive pricing with quick turnaround times for all services
+              </p>
+            </div>
+
+            {/* End to End Local Support */}
+            <div className="text-center p-6 rounded-lg bg-gradient-to-br from-purple-50 to-purple-100/50 hover:shadow-lg transition-all duration-200">
+              <div className="w-16 h-16 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                <Headphones className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                End to End Local Support
+              </h3>
+              <p className="text-sm text-gray-600">
+                Dedicated assistance from setup to ongoing business requirements
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* City Selection - Mobile Friendly */}
+      <section id="choose-city-section" className="py-12 md:py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
+              Virtual Office for GST Registration in India
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 px-4 max-w-2xl mx-auto">
+              Select your business location from India's major cities
+            </p>
+          </div>
+
+          {/* Popular Cities Grid - Mobile Optimized */}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-10 md:mb-12 max-w-4xl mx-auto">
+            {popularCities.map((location: Location) => (
+              <Card
+                key={location.id}
+                onClick={() => handleCityClick(location)}
+                className="cursor-pointer hover:shadow-lg transition-all duration-200 p-4 sm:p-5 text-center border-0 shadow-sm hover:scale-105 bg-white w-24 sm:w-28 md:w-32"
+              >
+                <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 rounded-full bg-blue-500 flex items-center justify-center shadow-sm">
+                  {(() => {
+                    const IconComponent = getCityIcon(location.name);
+                    return (
+                      <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                    );
+                  })()}
+                </div>
+                <div className="text-sm sm:text-base font-semibold text-gray-900 leading-tight">
+                  {location.name}
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          {/* All Cities List - Enhanced Design with Search */}
+          <div className="mb-6 md:mb-8">
+            <div className="text-center mb-6 md:mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
+                Virtual Office in All Major Cities
+              </h3>
+              <p className="text-base sm:text-lg text-gray-600">
+                Click on any city to get started
+              </p>
+            </div>
+
+            <Card className="border-0 shadow-lg bg-white rounded-xl">
+              <CardContent className="p-6 md:p-8">
+                {/* Search bar for all cities */}
+                <div className="mb-6 md:mb-8">
+                  <div className="relative max-w-md mx-auto">
+                    <Search className="absolute left-4 top-4 h-5 w-5 text-gray-400" />
+                    <Input
+                      type="text"
+                      placeholder="Search cities..."
+                      value={citySearchTerm}
+                      onChange={(e) => setCitySearchTerm(e.target.value)}
+                      className="pl-12 py-4 text-base border-gray-200 focus:border-blue-400 focus:ring-blue-400 rounded-lg"
+                    />
+                  </div>
+                  {citySearchTerm && (
+                    <div className="text-center mt-3">
+                      <p className="text-sm text-gray-600 font-medium">
+                        {filteredAllCities.length} cities found
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
+                  {citiesToDisplay.map((location) => (
+                    <div
+                      key={location.id}
+                      onClick={() => handleCityClick(location)}
+                      className="flex items-center justify-center p-3 md:p-4 border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-300 transition-all cursor-pointer bg-white hover:bg-blue-50 group text-center"
+                    >
+                      <span className="text-sm md:text-base font-medium text-gray-900 group-hover:text-blue-700 transition-colors truncate">
+                        {location.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Show More/Show Less Button */}
+                {!citySearchTerm && (
+                  <div className="text-center mt-6">
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowAllCities(!showAllCities)}
+                      className="px-6 py-2 text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300"
+                    >
+                      {showAllCities ? (
+                        <>Show Less Cities</>
+                      ) : (
+                        <>Show All {allLocations.length} Cities</>
+                      )}
+                    </Button>
+                  </div>
+                )}
+
+                {filteredAllCities.length === 0 && citySearchTerm && (
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+                      <Search className="h-8 w-8 text-gray-400" />
+                    </div>
+                    <h4 className="text-sm font-medium text-gray-900 mb-2">
+                      No cities found
+                    </h4>
+                    <p className="text-xs text-gray-500">
+                      Try searching with a different term
+                    </p>
+                  </div>
+                )}
+
+                <div className="mt-4 pt-4 border-t border-gray-100 text-center">
+                  <p className="text-xs text-gray-500">
+                    {citySearchTerm
+                      ? `${filteredAllCities.length} of ${allLocations.length} cities shown`
+                      : showAllCities
+                        ? `All ${allLocations.length} cities available across India`
+                        : `Showing 24 of ${allLocations.length} cities available across India`}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Search - Mobile Optimized */}
+          <div className="max-w-sm sm:max-w-md mx-auto px-2">
+            <div className="relative">
+              <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search cities..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 text-sm sm:text-base"
+              />
+            </div>
+
+            {searchTerm && (
+              <div className="mt-3 sm:mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {filteredLocations.slice(0, 6).map((location) => (
+                  <Button
+                    key={location.id}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleCityClick(location)}
+                    className="text-left justify-start text-xs sm:text-sm"
+                  >
+                    {location.name}
+                  </Button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us - Mobile Optimized */}
+      <section className="py-10 md:py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4 px-2 leading-tight">
+              Everything You Need to Start Your Business
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+              Complete business support from registration to banking
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {/* Premium Address */}
+            <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 text-center hover:shadow-lg transition-all duration-300 group">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-blue-100 flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-blue-200 transition-colors">
+                <Building className="h-8 w-8 sm:h-10 sm:w-10 text-blue-600" />
+              </div>
+              <h3 className="font-bold mb-3 text-lg sm:text-xl text-gray-900">
+                Premium Address
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                Low cost business address in prime locations across major Indian
+                cities
+              </p>
+            </div>
+
+            {/* GST and MCA Support */}
+            <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 text-center hover:shadow-lg transition-all duration-300 group">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-green-100 flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-green-200 transition-colors">
+                <CheckCircle className="h-8 w-8 sm:h-10 sm:w-10 text-green-600" />
+              </div>
+              <h3 className="font-bold mb-3 text-lg sm:text-xl text-gray-900">
+                GST and MCA Support
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                No extra compliance fees. Our in-house experts handle your
+                application process
+              </p>
+            </div>
+
+            {/* Bank Account Opening Support */}
+            <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 text-center hover:shadow-lg transition-all duration-300 group md:col-span-1">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-purple-100 flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:bg-purple-200 transition-colors">
+                <HandshakeIcon className="h-8 w-8 sm:h-10 sm:w-10 text-purple-600" />
+              </div>
+              <h3 className="font-bold mb-3 text-lg sm:text-xl text-gray-900">
+                Bank Account Opening
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                Complete assistance with business bank account setup and
+                documentation
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer location={null} />
+      <MobileContactButton />
+    </div>
+  );
+}

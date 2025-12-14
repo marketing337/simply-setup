@@ -1,0 +1,212 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Slider</title>
+    <style>
+        
+        
+        .gst-trusted-section {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 30px 0; /* Reduced from 60px to 30px */
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .gst-trusted-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .gst-trusted-header {
+            text-align: center;
+            margin-bottom: 20px; /* Reduced from 40px to 20px */
+        }
+        
+        .gst-trusted-title {
+            font-size: 1.875rem;
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 5px; /* Reduced from 10px to 5px */
+            line-height: 1.2;
+        }
+        
+        .gst-trusted-highlight {
+            color: #2563eb;
+        }
+        
+        .gst-trusted-divider {
+            width: 80px;
+            height: 3px;
+            background-color: #2563eb;
+            margin: 12px auto; /* Reduced from 16px to 12px */
+            border-radius: 2px;
+        }
+        
+        .gst-trusted-description {
+            font-size: 1rem;
+            color: #4b5563;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .gst-logo-carousel-wrapper {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .gst-logo-carousel {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        
+        .gst-logo-slide {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            height: 60px; /* Reduced from 80px to 60px */
+            margin: 0 24px;
+                    }
+        
+        .gst-logo-slide:hover {
+            opacity: 1;
+        }
+        
+        .gst-logo-image {
+            max-width: 100%;
+            max-height: 48px;
+            object-fit: contain;
+        }
+        
+        /* Removed fade overlays as requested */
+        
+        .gst-trusted-footnote {
+            text-align: center;
+            margin-top: 20px; /* Reduced from 40px to 20px */
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        @media (max-width: 768px) {
+            .gst-trusted-title {
+                font-size: 1.5rem;
+            }
+            
+            .gst-trusted-description {
+                font-size: 0.9375rem;
+            }
+            
+            .gst-logo-slide {
+                width: 100px; /* Reduced from 160px to show more logos */
+                margin: 0 10px; /* Reduced from 16px to fit more logos */
+                height: 50px; /* Reduced height on mobile */
+            }
+            
+            .gst-logo-image {
+                max-height: 40px; /* Slightly smaller logos on mobile */
+            }
+            
+            .gst-trusted-section {
+                padding: 20px 0; /* Even less padding on mobile */
+            }
+        }
+    </style>
+
+
+    <section id="gst-trusted-partners" class="gst-trusted-section">
+        <div class="gst-trusted-container">
+            <div class="gst-trusted-header">
+                <h2 class="gst-trusted-title">Trusted by <span class="gst-trusted-highlight">Industry Leaders</span>
+</h2>
+                <div class="gst-trusted-divider"></div>
+                <p class="gst-trusted-description">10,000+ D2C Brands and Public Companies across diverse sectors rely on our expertise</p>
+            </div>
+            
+            <div class="gst-logo-carousel-wrapper">
+                <!-- Removed fade overlays as requested -->
+                <div id="gst-logo-carousel" class="gst-logo-carousel">
+                    <!-- Logos will be duplicated by JavaScript for infinite scrolling effect -->
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/Airtel-logo.png?v=1744191898" alt="AIRTEL"></div>
+
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/godrej-logo-191FB61A1F-seeklogo.com.png?v=1723541004" alt="GODREJ"></div>
+<div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/TATA_1mg_Logo.png?v=1749482060" alt="TATA1MG"></div>
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/8.png?v=1723630722" alt="ZUARI"></div>
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/MANKIND.NS_BIG-e2edbe6b.png?v=1740139347" alt="MANKIND"></div>
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/haldirams-logo_1.png?v=1723630841" alt="HALDIRAM"></div>
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://thegstco.com/cdn/shop/files/Milton_Logo_x38.png?v=1719050580" alt="MILTON"></div>
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/5849356.png?v=1723011064" alt="AVON CYCLES"></div>
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/1473406729waree-final.png?v=1728900708" alt="WAAREE"></div>
+                    <div class="gst-logo-slide"><img class="gst-logo-image" src="https://thegstco.com/cdn/shop/files/mamaearth-logo_x38.png?v=1706364685" alt="MAMAEARTH"></div>
+<div class="gst-logo-slide"><img class="gst-logo-image" src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/cocoblu-logo.png?v=1723009856" alt="COCOBLU"></div>
+                    
+                </div>
+            </div>
+            
+            <div class="gst-trusted-footnote">
+                <p>And many more leading MSMEs</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const logoCarousel = document.getElementById('gst-logo-carousel');
+            const logoSlides = document.querySelectorAll('.gst-logo-slide');
+            
+            // Clone logos for infinite scrolling effect
+            logoSlides.forEach(item => {
+                const clone = item.cloneNode(true);
+                logoCarousel.appendChild(clone);
+            });
+            
+            // Set initial position
+            let position = 0;
+            let isPaused = false;
+            
+            // Animation function
+            function animateCarousel() {
+                if (!isPaused) {
+                    position -= 0.25;
+                    
+                    // Reset position when we've scrolled through the first set of logos
+                    const isMobile = window.innerWidth <= 768;
+                    const slideWidth = isMobile ? 120 + 20 : 180 + 48; // logo width + margins (adjusted for mobile)
+                    const totalWidth = logoSlides.length * slideWidth;
+                    
+                    if (position <= -totalWidth) {
+                        position = 0;
+                    }
+                    
+                    logoCarousel.style.transform = `translateX(${position}px)`;
+                }
+                
+                requestAnimationFrame(animateCarousel);
+            }
+            
+            // Start animation
+            animateCarousel();
+            
+            // Pause on hover
+            logoCarousel.addEventListener('mouseenter', function() {
+                isPaused = true;
+            });
+            
+            logoCarousel.addEventListener('mouseleave', function() {
+                isPaused = false;
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                // Reset position on window resize to prevent jumps
+                position = 0;
+                logoCarousel.style.transform = `translateX(${position}px)`;
+            });
+        });
+    </script>

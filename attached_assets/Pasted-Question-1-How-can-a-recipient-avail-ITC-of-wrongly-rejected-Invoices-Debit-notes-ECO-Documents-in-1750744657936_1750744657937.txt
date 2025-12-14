@@ -1,0 +1,25 @@
+Question 1: How can a recipient avail ITC of wrongly rejected Invoices/ Debit notes/ECO-Documents in IMS as corresponding GSTR-3B of same tax period was also filed by recipient?
+
+Answer: In such cases recipient can request to the corresponding supplier to report the same record (without any change) in same return period’s GSTR-1A or respective amendment table of subsequent GSTR-1/IFF. Thus, recipient can avail the ITC basis on amended record by accepting such record on IMS and recomputing GSTR-2B on IMS. Here the recipient will get ITC of complete amended value as original record was rejected by the recipient.
+
+However, recipient will be able to take ITC for the again furnished document by the supplier, as stated above, only in the GSTR-2B of the concerned tax-period.
+
+
+Question 2: If any original record is rejected by the recipient and supplier furnishes the same record in GSTR-1A of same tax period or in the amendment table of GSTR-1/IFF of subsequent period, till the specified time limit, then what impact it will have on supplier’s liability?
+
+Answer: In case supplier had furnished an original record in GSTR-1/IFF but the same record was rejected wrongly by the recipient in IMS. In such cases supplier on noticing the same in the supplier’s view of IMS dashboard or on request of recipient, may furnish the same record again (without any change) in GSTR-1A of same tax period or in the amendment table of GSTR-1/IFF in any subsequent period, till the specified time limit, then the liability of supplier will not increase. As amendment table take delta value only. Thus, in present case of same values, differential liability increase will be zero.
+
+
+Question 3: As a recipient taxpayer, how to reverse ITC of wrongly rejected Credit note in IMS as the corresponding GSTR-3B has already been filed?
+
+Answer: In such cases recipient can request the concerned supplier to furnish the same Credit note (CN) without any change in the same return period’s GSTR-1A or in amendment table of subsequent period’s GSTR-1/IFF. Now recipient can reverse the availed ITC based on the amended CN by accepting the CN on IMS. Hence, the recipient’s ITC will get reduced with complete amended value, as soon as the recipient recomputes GSTR-2B on IMS. The reduced value is same as that of the value of original CN as in this case the complete original CN was rejected by the recipient.
+
+
+Question 4: If any original Credit note was rejected by the recipient and supplier furnishes the same credit note in GSTR-1A of same tax period or in the amendment table of GSTR-1/IFF of any future tax-period, till the specified time limit, then what impact it will have on supplier’s liability?
+
+Answer: At first instant the supplier’s liability will be added back in the open GSTR-3B return, because of original credit note rejection by the recipient. However, as the supplier furnishes the same credit note in GSTR-1A of same tax period or in amendment table of GSTR-1/IFF in any subsequent period, supplier’s liability for this amendment will get reduced again corresponding to the value of amended CN (which in this case is same as original). Thus, net effect on liability of supplier will be only once.
+
+
+Thanking You,
+Team GSTN
+

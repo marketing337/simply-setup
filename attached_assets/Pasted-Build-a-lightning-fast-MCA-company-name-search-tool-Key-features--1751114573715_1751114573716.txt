@@ -1,0 +1,59 @@
+Build a lightning-fast MCA company-name search tool.
+
+# === Key features ============================================================
+1. `/search?q=` endpoint → returns top 20 fuzzy matches (company_name, cin, roc_state, status).
+2. `/company/{cin}` endpoint → detailed JSON + mini HTML page.
+3. Nightly ETL job:
+   • Pull full dump from OGD endpoint  
+     https://api.data.gov.in/resource/4dbe5667-7b6b-41d7-82af-211562424d9a  
+     (use api_key = 579b464db66ec23bdd0000017b33592251ab44936092251d51b902be).  
+   • Upsert into SQLite table `company_master`.
+4. Full-text index on `company_name` (FTS5).
+5. Simple HTMX/Alpine.js frontend with instant (200 ms) “type-ahead”.
+6. Dockerfile + `replit.nix` so it runs on Replit, Railway, or local.
+
+# === Tech stack ==============================================================
+- Python 3.12  
+- FastAPI + Uvicorn  
+- SQLModel (SQLAlchemy 2) + SQLite (swap later for Postgres)  
+- schedule (cron replacement)  
+- requests + tenacity (retry)  
+- htmx + tailwind via CDN for minimal JS
+
+# === File structure ==========================================================
+/app
+ ├─ main.py            ← FastAPI app, routers, CORS
+ ├─ models.py          ← SQLModel `CompanyMaster`
+ ├─ crud.py            ← DB helpers (get_by_cin, search_by_name, bulk_upsert)
+ ├─ etl.py             ← fetch_xml(), parse_rows(), nightly_job()
+ ├─ templates/
+ │   ├─ base.html      ← tailwind layout
+ │   ├─ index.html     ← search bar + results div
+ │   └─ company.html   ← detail view
+ ├─ static/            ← favicon, logo
+ └─ requirements.txt
+Dockerfile
+replit.nix
+README.md
+
+# === Implementation notes ====================================================
+* API KEY: read from env var `OGD_API_KEY` (add it in Replit Secrets).  
+* XML parsing: use `xml.etree.ElementTree` (dataset is small per page).  
+* Pagination: OGD API defaults to 10 rows; loop with `offset` until empty.  
+* ETL schedule: `schedule.every().day.at("03:00").do(run_etl)` inside
+  a background task started by FastAPI’s `startup` event.
+* Search: `SELECT * FROM company_master WHERE company_name MATCH :q
+  ORDER BY rank LIMIT 20;`
+* Return both JSON and HTML: use FastAPI’s `response_class=HTMLResponse`
+  if header `Accept: text/html`.
+* Add `/docs` Swagger UI for quick dev testing.
+
+# === Bonus (stretch) =========================================================
+- Add debounce (300 ms) to HTMX input.  
+- If query length < 3, show “type ≥ 3 letters”.  
+- Column `last_fetched` for stale-row refresh on detail view (call OGD API
+  with `filters[cin]=...`).
+
+# === What to generate ========================================================
+1. All files listed above with production-grade code and comments.
+2. A short `README.md` with run instructions:

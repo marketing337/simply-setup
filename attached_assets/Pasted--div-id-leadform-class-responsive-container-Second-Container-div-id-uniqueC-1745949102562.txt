@@ -1,0 +1,400 @@
+<div id="leadform" class="responsive-container">
+
+    <!-- Second Container -->
+    <div id="uniqueContainer1" class="unique-container-class unique-left-class">
+      <div id="uniqueLeft1" class="unique-left-class">
+        <h2>Get Started with VPOB &amp; APOB Today</h2>
+      <ul>
+        <li>✔ 10,000+ Happy Sellers</li>
+        <li>✔ Discounted Quotes</li>
+        <li>✔ 100% Refund Policy</li>
+      </ul>
+      </div>
+    </div>
+
+    <!-- Third Container -->
+    <div class="unique-container-class">
+      
+<!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
+<div class="zf-templateWidth" style=" margin-left: 0px; margin-right: 0px; "><form action="https://forms.zohopublic.in/accounts50/form/TGC1/formperma/oy2Jr8XGMgqQlHOZll-g8tOC42SYyR8FibFAeHaYcGc/htmlRecords/submit" name="form" method="POST" onsubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' accept-charset="UTF-8" enctype="multipart/form-data" id="form">
+<input type="hidden" name="zf_referrer_name" value=""><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
+<input type="hidden" name="zf_redirect_url" value=""><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
+<input type="hidden" name="zc_gad" value=""><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
+<div class="zf-templateWrapper">
+<!---------template Header Starts Here---------->
+<ul class="zf-tempHeadBdr" style="margin-left:0px;"><li class="zf-tempHeadContBdr">
+<h2 class="zf-frmTitle"><em style="font-size: 20px;">Free Consultation by Expert</em></h2>
+<p class="zf-frmDesc"></p>
+<div class="zf-clearBoth"></div>
+</li></ul>
+<!---------template Header Ends Here---------->
+<!---------template Container Starts Here---------->
+<div class="zf-subContWrap zf-topAlign"><ul style="margin-left: 0px;">
+<!---------Single Line Starts Here---------->
+<li class="zf-tempFrmWrapper zf-large">
+<div class="zf-tempContDiv">
+<span> <input type="text" name="SingleLine1" checktype="c1" value="" maxlength="255" fieldtype="1" placeholder="Company Name"></span> <p id="SingleLine1_error" class="zf-errorMessage" style="display:none;">Enter your company name</p>
+</div>
+<div class="zf-clearBoth"></div>
+</li>
+<!---------Single Line Ends Here---------->
+<!---------Single Line Starts Here---------->
+<li class="zf-tempFrmWrapper zf-large">
+<div class="zf-tempContDiv">
+<span> <input type="text" name="SingleLine" checktype="c1" value="" maxlength="255" fieldtype="1" placeholder="Your Name"></span> <p id="SingleLine_error" class="zf-errorMessage" style="display:none;">Enter your name</p>
+</div>
+<div class="zf-clearBoth"></div>
+</li>
+<!---------Single Line Ends Here---------->
+<!---------Phone Starts Here----------> 
+<li class="zf-tempFrmWrapper zf-large">
+<div class="zf-tempContDiv zf-phonefld">
+<div class="zf-phwrapper">
+<span> <input type="text" compname="PhoneNumber_countrycodeval" name="PhoneNumber_countrycodeval" checktype="c7" maxlength="10" phoneformat="1" iscountrycodeenabled="true" id="international_PhoneNumber_countrycodeval" valtype="code" value="+91" readonly class="zf-countryCode" placeholder="Phone Number">
+<span> <input type="number" compname="PhoneNumber" name="PhoneNumber_countrycode" minlength="10" maxlength="12" checktype="c7" value="" phoneformat="1" iscountrycodeenabled="true" fieldtype="11" id="international_PhoneNumber_countrycode" valtype="number" phoneformattype="1" placeholder="Phone Number">
+<div class="zf-clearBoth"></div></span></span>
+</div>
+<p id="PhoneNumber_error" class="zf-errorMessage" style="display:none;">Enter 10 Digit Phone Number</p>
+</div>
+<div class="zf-clearBoth"></div>
+</li>
+<!---------Phone Ends Here----------> 
+<!---------Email Starts Here---------->  
+<li class="zf-tempFrmWrapper zf-large">
+<div class="zf-tempContDiv">
+<span>
+    <input type="email" id="Email" name="Email" maxlength="255" placeholder="Email ID" required="" aria-required="true">
+</span>
+<p id="Email_error" class="zf-errorMessage" style="display:none;">Enter a valid email address. (eg: yourname@domain.com)</p>
+
+</div>
+<div class="zf-clearBoth"></div>
+</li>
+<!---------Email Ends Here---------->  
+  <span><input type="hidden" id="WebsiteURL" style="width:250px;" maxlength="255" name="Website" value="">
+
+</span>
+</ul></div>
+<!---------template Container Starts Here---------->
+<ul style="margin-left: 0px;"><li class="zf-fmFooter"><button class="zf-submitColor">Contact Us Now</button></li></ul>
+</div>
+<!-- 'zf-templateWrapper' ends -->
+</form></div>
+<!-- 'zf-templateWidth' ends -->
+<script type="text/javascript">var zf_DateRegex = new RegExp("^(([0][1-9])|([1-2][0-9])|([3][0-1]))[-](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
+var zf_MandArray = [ "SingleLine1", "SingleLine", "PhoneNumber_countrycode", "PhoneNumber_countrycodeVal", "Email"]; 
+var zf_FieldArray = [ "SingleLine1", "SingleLine", "PhoneNumber_countrycode", "PhoneNumber_countrycodeVal", "Email"]; 
+var isSalesIQIntegrationEnabled = false;
+var salesIQFieldsArray = [];</script>
+
+<style>
+
+li{
+  list-style-type: none;
+}
+  
+/* Styles for form container */
+.zf-templateWidth {
+  width: 100%;
+  max-width: 400px; /* Set max-width for the form */
+  background: #FFFFFF; /* White background for the form */
+  padding: 20px; /* Padding inside the form */
+    border-radius: 8px; /* Rounded corners for the form */
+  margin: 20px auto; /* Center the form on the page with some margin */
+}
+
+/* General styles for form inputs */
+.zf-tempContDiv input[type="text"],
+.zf-tempContDiv input[type="email"],
+.zf-tempContDiv input[type="number"],
+.zf-tempContDiv input[type="tel"] {
+  width: 100%;
+  padding: 15px; /* Padding inside input fields */
+  margin-bottom: 15px; /* Space between each field */
+  border: 1px solid #D3D3D3; /* Light grey border */
+  border-radius: 4px; /* Slightly rounded borders for input fields */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Styles for the country code and phone number */
+.zf-phwrapper {
+  align-items: center; /* Align items vertically */
+}
+
+.zf-countryCode {
+  display: none;
+}
+
+.zf-phwrapper input[type="tel"] {
+  flex-grow: 1; /* Allow the phone number input to fill the space */
+  border-radius: 0 4px 4px 0; /* Only round the right corners */
+}
+
+/* Styles for the submit button */
+.zf-submitColor {
+  width: 100%;
+  padding: 15px; /* Padding inside the button */
+  border: none; /* No border for the button */
+  background: #007BFF; /* Blue background color for the button */
+  color: #FFFFFF; /* White text color for the button */
+  border-radius: 4px; /* Slightly rounded borders for the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Larger font size for the button */
+  font-weight: bold; /* Bold font weight for the button */
+  box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* subtle shadow for the button */
+  transition: background-color 0.3s ease; /* Smooth transition for button hover */
+}
+
+.zf-submitColor:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+/* Error Message Styles */
+.zf-errorMessage {
+  color: #FF0000; /* Red color for errors */
+  margin-bottom: 15px; /* Space after error message */
+}
+
+/* Apply the form title style */
+.zf-frmTitle {
+  font-size: 24px; /* Larger font size for the title */
+  color: #333333; /* Dark color for the title */
+  margin-bottom: 30px; /* Space after the title */
+  text-align: center; /* Center align the title */
+}
+
+/* Optional: Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .zf-templateWidth {
+    padding: 15px;
+    margin: 0px;
+  }
+}
+
+.zf-templateWidth {
+	max-width: 100%;
+	padding: 20px;
+	
+	border-radius: 8px;
+	background: #FFFFFF;
+	margin: 20px auto;
+  }
+  
+  .zf-tempFrmWrapper {
+	list-style-type: none;
+  }
+  
+  /* Input styles */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  textarea {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+  }
+  
+  /* Button styles */
+  button.zf-submitColor {
+	width: 100%;
+	padding: 15px;
+	border: none;
+	background-color: #007bff;
+	color: white;
+	border-radius: 4px;
+  }
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+	.zf-templateWidth {
+	  padding: 15px;
+	}
+  
+	input[type="text"],
+	input[type="email"],
+	input[type="tel"],
+    input[type="number"],
+	textarea {
+	  padding: 10px;
+	}
+  
+	button.zf-submitColor {
+	  padding: 12px;
+	}
+  }
+  
+  @media screen and (max-width: 480px) {
+	.zf-templateWidth {
+	  margin: 15px 10px;
+	}
+  
+	input[type="text"],
+	input[type="email"],
+    input[type="number"],
+	input[type="tel"],
+	textarea,
+	button.zf-submitColor {
+	  font-size: 16px; /* Larger font for smaller screens */
+	}
+  }
+</style>
+
+<script>
+
+document.getElementById("WebsiteURL").value=window.location.href; 
+
+function zf_ValidateAndSubmit() {
+    // Check if all mandatory fields are filled and valid before submitting
+    if (zf_CheckMandatory() && zf_ValidCheck() && zf_ValidatePhone()) {
+        // If SalesIQ integration is enabled, add data to SalesIQ
+        if (isSalesIQIntegrationEnabled) {
+            zf_addDataToSalesIQ();
+        }
+        return true; // Return true if everything is valid
+    } else {
+        return false; // Prevent form submission if validation fails
+    }
+}
+
+function zf_CheckMandatory() {
+    // Iterate over mandatory fields to check if they are filled
+    for (let i = 0; i < zf_MandArray.length; i++) {
+        let fieldObj = document.forms['form'][zf_MandArray[i]];
+        if (fieldObj && fieldObj.value.trim() === '') {
+            // If any mandatory field is empty, show an error message and focus on the field
+            zf_ShowErrorMsg(zf_MandArray[i]);
+            fieldObj.focus();
+            return false;
+        }
+    }
+    return true; // Return true if all mandatory fields are filled
+}
+
+function zf_ValidCheck() {
+    // Check for field validity according to type constraints (e.g., email format, number format)
+    for (let ind = 0; ind < zf_FieldArray.length; ind++) {
+        let fieldObj = document.forms['form'][zf_FieldArray[ind]];
+        if (fieldObj && !fieldObj.checkValidity()) {
+            // If any field is invalid according to HTML5 validation, show error and focus
+            zf_ShowErrorMsg(zf_FieldArray[ind]);
+            fieldObj.focus();
+            return false;
+        }
+    }
+    return true; // Return true if all fields are valid
+}
+
+function zf_ValidatePhone() {
+    // Custom function to validate phone number length
+    let phoneField = document.forms['form']['PhoneNumber'];
+    if (phoneField) {
+        let phoneValue = phoneField.value.trim();
+        if (phoneValue.length !== 10) {
+            // If phone number is not exactly 10 digits, show error and focus on the field
+            zf_ShowErrorMsg('PhoneNumber');
+            phoneField.focus();
+            return false;
+        }
+    }
+    return true; // Return true if phone number is exactly 10 digits
+}
+
+  function zf_ValidateAndSubmit() {
+    if (zf_CheckMandatory() && zf_ValidCheck()) {
+        if (!zf_ValidateEmail()) {  // Additional validation for the email format
+            return false;
+        }
+        if (isSalesIQIntegrationEnabled) {
+            zf_addDataToSalesIQ();
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function zf_ValidateEmail() {
+    let emailField = document.getElementById('Email');
+    let emailValue = emailField.value.trim();
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Regex to validate standard email format
+
+    if (!emailRegex.test(emailValue)) {
+        zf_ShowErrorMsg('Email'); // Show error if email format is not valid
+        emailField.focus();
+        return false;
+    }
+    return true;
+}
+
+function zf_ShowErrorMsg(uniqName) {
+    // Split the unique name to get the base field name and show its associated error message
+    let linkName = uniqName.split('_')[0];
+    let errorElement = document.getElementById(linkName + "_error");
+    if (errorElement) {
+        errorElement.style.display = 'block'; // Display the error message
+        errorElement.innerText = uniqName === 'PhoneNumber' ? 'Enter a 10-digit phone number' : 'This field is required'; // Custom message for phone number
+    }
+}
+
+// Additional helper functions that might be required for complex validations or custom checks
+function zf_addDataToSalesIQ() {
+    // Function to integrate with Zoho SalesIQ
+    console.log("Data would be added to SalesIQ here.");
+}
+
+</script>
+    </div>
+
+  </div>
+
+<style>
+
+/* Responsive containers */
+.responsive-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+ul {
+  list-style-type: none; /* Removes bullet points */
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  text-align: left; /* Aligns text to the left */
+}
+
+.unique-container-class {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 48%;
+  margin: 10px 10px 10px 0px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.unique-left-class {
+  flex: 1;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .responsive-container, #uniqueContainer.unique-container-class {
+    flex-direction: column;
+  }
+  .unique-container-class, #uniqueContainer.unique-container-class {
+    width: 100%;
+  }
+}
+</style>

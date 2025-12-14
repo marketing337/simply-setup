@@ -1,0 +1,59 @@
+<style>
+        /* General Section Styling */
+        .service-providers {
+            text-align: center;
+            padding:  20px 0px;        }
+
+        
+
+        /* Provider Container Styling */
+        .provider-container {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr;
+            margin: 0 auto;
+        }
+
+        .provider-container a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+       
+
+        .provider-container img {
+            max-width: 80%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        
+
+        /* Responsive Styling */
+        @media (min-width: 768px) {
+            .provider-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+
+
+
+<section class="service-providers">
+   
+    <div class="provider-container">
+        <a href="https://sellercentral.amazon.in/gspn/provider-details/Taxes/edc4f8ac-e14d-4e43-af61-399cabbbacf7?ref_=sc_gspn_talst_tadt-edc4f8ac&amp;localeSelection=en_US&amp;sellFrom=IN&amp;sellIn=IN">
+            <img src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/seller_service_provider_2acd6823-000f-444a-85f9-5ba66426bbe5.png?v=1705946594" alt="Amazon Service Provider">
+        </a>
+        <a href="https://seller.flipkart.com/index.html#dashboard/partner-services/service-partner-details?query=%257B%2522categoryId%2522%3A%25227%2522%2C%2522location%2522%3A412207%2C%2522partnerCategoryId%2522%3A%25228123%2522%2C%2522partnerId%2522%3A%2522PTNc58c1173c26f4a248fcd11e9e8cf025d%2522%2C%2522campaignId%2522%3A%2522%2522%2C%2522categoryName%2522%3A%2522Taxation%2522%2C%2522pageCTASource%2522%3A%2522%2520Partner%2520card%2522%2C%2522pageCTAValue%2522%3A%2522%2522%257D">
+            <img src="https://cdn.shopify.com/s/files/1/0704/3704/4519/files/seller_service_provider_1.png?v=1717265468" alt="Flipkart Service Provider">
+        </a>
+    </div>
+</section>

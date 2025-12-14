@@ -1,0 +1,94 @@
+# robots.txt for SimplySetup.com - Virtual Office Platform
+# Last updated: June 8, 2025
+# Comprehensive SEO-friendly configuration
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Prioritize important pages for search engines
+Allow: /mumbai
+Allow: /bangalore  
+Allow: /delhi
+Allow: /hyderabad
+Allow: /chennai
+Allow: /pune
+Allow: /blog
+Allow: /partnership
+
+# Disallow sensitive areas and non-public content
+Disallow: /admin/
+Disallow: /login/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /_vite/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: *.json$
+Disallow: */draft/*
+Disallow: */temp/*
+Disallow: */test/*
+Disallow: *?utm_*
+Disallow: *?fbclid=*
+Disallow: *?gclid=*
+
+# Optimize for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Control aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: dotbot
+Crawl-delay: 10
+
+User-agent: rogerbot
+Crawl-delay: 10
+
+User-agent: BLEXBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+User-agent: LinkpadBot
+Crawl-delay: 10
+
+# Block unwanted bots
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Sitemap locations
+Sitemap: https://simplysetup.com/sitemap.xml
+Sitemap: https://www.simplysetup.com/sitemap.xml
+
+# Host directive for canonical domain
+Host: https://simplysetup.com
